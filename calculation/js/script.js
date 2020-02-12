@@ -8,33 +8,62 @@ let start = document.getElementById('start');
 let incomePlus = document.getElementsByTagName('button')[0];
 let expensesPlus = document.getElementsByTagName('button')[1];
 
-// Чекбокс по id через querySelector
-let checkboxDeposit = document.querySelector('#deposit-check'); 
+// Чекбокс "есть ли депозит"
+let depositCheck = document.querySelector('#deposit-check'); 
 
-// Поля для ввода возможных доходов (additional_income-item) при помощи querySelectorAll
+//месячный доход 
+let salaryAmount = document.querySelector('.salary-amount');
+
+// поля для ввода названия "дополнительный доход"
+let incomeTitle = document.querySelector('.income-title');
+
+// Поля для ввода возможных доходов 
 let additionalIncomeItem = document.querySelectorAll('.additional_income-item'); 
 
+//поля ввода имени "обязательные расходы"
+let expensesTitle = document.querySelector('.expenses-title');
 
-// Каждый элемент в правой части программы через класс, которые имеют в имени класса "-value", начиная с class="budget_day-value" и заканчивая class="target_month-value">
-let budgetDayValue = document.querySelector('.budget_day-value');
+// поле ввода возможных расходов
+let additionalExpensesItem = document.querySelector('.additional_expenses-item');
+
+// поле для ввода "цель сумма"
+let targetAmount = document.querySelector('.target-amount');
+
+// бегунок период рассчета
+let periodSelect = document.querySelectorAll('.period-select'); 
+// значение бегунка период расчета
+let periodAmount = document.querySelectorAll('.period-amount');
+
+// вывод "доход за месяц"
 let budgetMonthValue = document.querySelector('.budget_month-value');
+
+// вывод "дневной бюджет"
+let budgetDayValue = document.querySelector('.budget_day-value');
+
+// вывод "расход за месяц"
 let expensesMonthValue = document.querySelector('.expenses_month-value');
+
+// вывод "возможные доходы"
 let additionalIncomeValue = document.querySelector('.additional_income-value');
+
+// вывод "возможные расходы"
 let additionalExpensesValue = document.querySelector('.additional_expenses-value');
+
+// вывод "накопления за период"
 let incomePeriodValue = document.querySelector('.income_period-value');
+
+// строк достижения цели в месяцах
 let targetMonthValue = document.querySelector('.target_month-value');
 
-// Оставшиеся поля через querySelector каждый в отдельную переменную:
-let salaryAmount = document.querySelector('.salary-amount');
-let incomeTitle = document.querySelector('.income-title');
-let expensesTitle = document.querySelector('.expenses-title'); 
+
+
+// родитель "обязательные расходы"
 let expensesItems = document.querySelectorAll('.expenses-items'); 
-//let additionalExpenses = document.querySelector('.additional_expenses-item'); 
-let targetAmount = document.querySelector('.target-amount');
-let additionalExpensesItem = document.querySelector('.additional_expenses-item');
+
+// родитель "дополнительный доход"
 let incomeItems = document.querySelectorAll('.income-items');
-let periodSelect = document.querySelectorAll('.period-select').value; 
-let periodAmount = document.querySelectorAll('.period-amount');
+
+
 
 let appData = {
     budget: 0, 
@@ -57,8 +86,6 @@ let appData = {
         }
 
         appData.budget = +salaryAmount.value;
-        console.log('salaryAmount.value: ', salaryAmount.value);
-
         
 
         appData.getExpenses();
@@ -196,8 +223,9 @@ let appData = {
         }
     },
     calcPeriod:function(){
-
-        return appData.budgetMonth * periodSelect.value;
+        
+        return appData.budgetMonth * document.querySelector('.period-select').value;
+        
         
     }
 };
@@ -210,17 +238,6 @@ expensesPlus.addEventListener('click', appData.addExpensesBlock);
 incomePlus.addEventListener('click', appData.addIncomeBlock);
 
 
-// if (appData.getTargetMonth() > 0) {
-//     console.log('Цель будет достигнута за ' + Math.ceil(appData.getTargetMonth()) + 'месяца');   
-// } else {
-//     console.log('Цель не будет достигнута');
-// };
-
-
-
-//for (let key in appData) {
- //   console.log('Наша программа включает в себя данные: ' + key + ' - ' + appData[key]);
-//}
 
 
 
