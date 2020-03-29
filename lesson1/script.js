@@ -20,3 +20,26 @@ console.log(addExpenses);
 let budgetDay = money/30;
 console.log('budgetDay: ', budgetDay);
 //    - Вывести в консоль budgetDay
+
+money = prompt ('Ваш месячный доход?', 10000);
+addExpenses = prompt ('Перечислите возможные расходы за рассчитываемый период через запятую', 'taxi, cafe, apartment');
+deposit = confirm ('Есть ли у вас депозит в банке?');
+let expenses1 = prompt ('Введите обязательную статью расходов?', 'садик');
+let amount1 = prompt('Во сколько это обойдется?', 2000);
+let expenses2 = prompt ('Введите обязательную статью расходов?', 'школа');
+let amount2 = prompt('Во сколько это обойдется?', 2000);
+let budgetMonth = (money-amount1-amount2);
+console.log('budgetMonth: ', budgetMonth);
+console.log(Math.floor(mission/budgetMonth));
+
+budgetDay = budgetMonth/30;
+
+if (budgetDay>1200) {
+  console.log('У вас высокий уровень дохода')
+}
+if (budgetDay>1200) {
+} else if ((budgetDay>600) && (budgetDay<1200)) {
+  console.log('У вас средний уровень дохода');
+} else {
+  console.log('Вы бомж');
+}
