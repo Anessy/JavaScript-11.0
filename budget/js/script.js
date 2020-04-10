@@ -1,6 +1,7 @@
 'use ctrict';
 
 let start = document.getElementById('start'), // кнопка рассчитать
+    cancel = document.querySelector('#cancel'), 
     btnPlus = document.getElementsByTagName('button'),
     incomePlus = btnPlus[0],
     expensesPlus = btnPlus[1], // + для добавления расходов
@@ -54,6 +55,15 @@ let appData = {
     appData.getBudget();
 
     appData.showResult();
+
+    cancel.style.display = 'block';
+    start.style.display='none';
+  },
+  reset: function(){
+    window.location = window.location.href; // обновить страницу!
+    cancel.style.display = 'none';
+    start.style.display='block';
+      
   },
   showResult: function() {
     budgetMonthValue.value = appData.budgetMonth;
@@ -162,6 +172,7 @@ let appData = {
 };
 
 start.addEventListener('click', appData.start); // клик на кнопку рассчитать
+cancel.addEventListener('click', appData.reset); // клик на кнопку сбросить
 expensesPlus.addEventListener('click', appData.addExpensesBlock); // клик на + расходов
 incomePlus.addEventListener('click', appData.addIncomeBlock); // клик на + доходов
 
