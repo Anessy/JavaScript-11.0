@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+ 
+  <h1>Классы ES6</h1>
+
+
+  <script>
+    class CarWash {
+      constructor(brand, model = CarWash.noCarBaseModel(), services = []){
+        this.brand = brand;
+        this.model = model; 
+        this.washed = false;
+        this._services = services; // инкапсуляция
+      }
+
+      // делаем статический метод
+      static noCarBaseModel(){ // если этого авто нет в базе
+        return 'none'; 
+      };
+
+      // дальше добавляем методы 
+      washReady() {
+        this.washed = true;
+        CarWash.counter++; 
+        this.report();
+      }
+
+      report() {
+        console.log(this.brand, this.model, this.washed);
+      }
+
+      get services() {
+        return this._services.length > 0 ? 'Есть доп услуги' : 'Нет доп услуг';
+      }
+      // напишем сеттер, который добавляет услуги 
+
+      set services(addServices) {
+        return this._services.push(addServices);
+      }
+    }
+
+    CarWash.counter = 0; // счеткик количества помытых автомобилей
+
+    const car1 = new CarWash('mazda', 3, ['black tires','wax']);
+    const car2 = new CarWash('BMV', 's60');
+    const car3 = new CarWash('Volvo', 'x3');
+    const car4 = new CarWash('zaz');
+
+    car2.services = 'Протирка стекол';
+   console.log(car1.services);
+   console.log(car2.services);
+  </script>
+
+</body>
+</html>
